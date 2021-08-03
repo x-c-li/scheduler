@@ -54,7 +54,7 @@ const days = [
     spots: 0,
   },
 ];
-  
+
 storiesOf("DayList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
