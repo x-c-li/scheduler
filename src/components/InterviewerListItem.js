@@ -1,5 +1,5 @@
 import React from 'react'
-import "components/InterviewListItem.scss";
+import "components/InterviewerListItem.scss";
 
 
 export default function Component() {
