@@ -1,5 +1,5 @@
 import React from "react";
-import className from "classnames";
+import classNames from "classnames";
 import "components/Button.scss";
 import { action } from "@storybook/addon-actions/dist/preview";
 
