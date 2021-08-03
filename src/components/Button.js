@@ -5,11 +5,11 @@ import { action } from "@storybook/addon-actions/dist/preview";
 
 export default function Button(props) {
    
-   var buttonClass = classNames("button", {
+   const buttonClass = classNames("button", {
       'button--confirm': props.confirm,
       'button--danger': props.danger
    });
-
+   console.log(props)
    return (
       <button 
          className={buttonClass}
