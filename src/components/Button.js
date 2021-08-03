@@ -1,6 +1,7 @@
 import React from "react";
 
 import "components/Button.scss";
+import { action } from "@storybook/addon-actions/dist/preview";
 
 export default function Button(props) {
    let buttonClass = "button";
@@ -13,9 +14,13 @@ export default function Button(props) {
       buttonClass += " button--danger";
    }
 
-   if (props.disabled) {
-      buttonClass += " button-disabled";
-   }
-
-   return <button className={buttonClass}>{props.children}</button>;
+   return (
+      <button 
+         className={buttonClass}
+         onClick={props.onClick}
+         disabled={props.disabled}
+      >
+         {props.children}
+      </button>
+      );
 }
