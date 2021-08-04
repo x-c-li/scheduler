@@ -9,27 +9,20 @@ import classNames from  'classnames';
 //   setInterviewer={interviewer.setInterviewer}
 //   selected={interviewer.id === interviewer}
 
-export default function InterviewerListItem({
-  name,
-  avatar,
-  setInterviewer, 
-  selected
-}) {
+export default function InterviewerListItem(props) {
   
   const InterviewerListClass = classNames("interviewers__item", {
-    'interviewers__item--selected': selected,
+    'interviewers__item--selected': props.selected,
   });
 
   return (
-    <div>
-      <li className={InterviewerListClass} onClick={() => {setInterviewer(name)}}>
-        <img
-          className='interviewers__item-image'
-          src={avatar}
-          alt={name}
-        />
-        {selected && name}
-      </li>
-    </div>
+    <li className={InterviewerListClass} onClick={props.setInterviewer}>
+      <img
+        className='interviewers__item-image'
+        src={props.avatar}
+        alt={props.name}
+      />
+      {props.selected && props.name}
+    </li>
   );
 }
