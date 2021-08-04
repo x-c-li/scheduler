@@ -16,17 +16,16 @@ export default function InterviewerList(props) {
     return (
     
       <InterviewerListItem
-      key={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      setInterviewer={interviewer.setInterviewer}
+        key={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        setInterviewer={interviewer.setInterviewer}
+        selected={interviewer.id === props.interviewer}
       />
     
     )
   });
 
-  // return interviewPerson
-  // interviewer={3}
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
@@ -35,13 +34,3 @@ export default function InterviewerList(props) {
   );
 
 }
-
-// export function preselectedInterviewer(spots) {
-//   if (setInterviewer) {
-//     return `no spots remaining`;
-//   }
-//   if (spots === 1) {
-//     return `${spots} spot remaining`;
-//   } 
-//   return `${spots} spots remaining`;
-// }
