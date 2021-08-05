@@ -24,14 +24,14 @@ const days = [
 
 const appointments = [
   {
-    id: 2,
+    id: 1,
     time: "12pm",
     interview: {
       student: "Lydia Miller-Jones",
       interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
+        id: 3,
+        name: "Mildred Nazir",
+        avatar: "https://i.imgur.com/T2WwVfS.png",
       }
     }
   },
@@ -41,26 +41,26 @@ const appointments = [
     interview: {
       student: "Lydia Miller-Jones",
       interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
+        id: 2,
+        name: "Tori Malcolm",
+        avatar: "https://i.imgur.com/Nmx0Qxo.png",
       }
     }
   },
   {
-    id: 2,
+    id: 3,
     time: "2pm",
     interview: {
-      student: "Lydia Miller-Jones",
+      student: "Joe",
       interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
+        id: 4,
+        name: "Cohana Roy",
+        avatar: "https://i.imgur.com/FK8V841.jpg",
       }
     }
   },
   {
-    id: 2,
+    id: 4,
     time: "3pm",
     interview: {
       student: "Lydia Miller-Jones",
@@ -75,11 +75,11 @@ const appointments = [
     id: 5,
     time: "4pm",
     interview: {
-      student: "Schleiden",
+      student: "Bob",
       interviewer: {
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg"
+        id: 5,
+        name: "Sven Jones",
+        avatar: "https://i.imgur.com/twYrpay.jpg"
       }
     }
   }
