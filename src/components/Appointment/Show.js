@@ -1,10 +1,5 @@
 import React from "react";
 
-//student:String
-//interviewer:object
-//onEdit:function
-//onDelete:function
-
 export default function Show(props) {
   
   return (

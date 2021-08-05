@@ -1,6 +1,4 @@
 import React from "react";
-// import classNames from "classnames";
-// import "components/DayList.scss";
 import DayListItem from "./DayListItem.js";
 
 

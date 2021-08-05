@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import InterviewerList from "components/InterviewerList"
 import Button from "components/Button"
 
-// name={"Student Name"}
-//       interviewers={interviewers}
-//       interviewer={1}
-//       onSave={action("OnSave")}
-//       onCancel={action("OnCancel")}
-
-
 export default function Form(props) {
   
   const [name, setName] = useState(props.name || "");
@@ -23,9 +16,6 @@ export default function Form(props) {
     reset()
     props.onCancel()
   }
-  // Add a cancel function to the Form component that calls reset() and props.onCancel. 
-  // We should also update our Form component so it's called 
-  // when a user clicks the Cancel button.
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">

@@ -1,9 +1,6 @@
 import React from "react";
-// import classNames from "classnames";
-// import "components/Appointment/styles.scss"
 import Button from "components/Button"
 
-// time:String
 export default function Confirm(props) {
   
   return (
