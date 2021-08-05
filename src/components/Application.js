@@ -115,7 +115,7 @@ export default function Application(props) {
         {appointments.map((appointment) =>
             <Appointment 
               key={appointment.id}
-              {...appointments}
+              {...appointment}
             />
           )
         }
