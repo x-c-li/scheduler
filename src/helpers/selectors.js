@@ -1,8 +1,6 @@
 //selector is to help compute new data from existing state in app 
 
-import React from "react";
-
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
 
   const daysArray = state.days
   let dayAppointments = false;

@@ -5,86 +5,45 @@ import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "./Appointment";
 
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-    interview: {
-      student: "John",
-      interviewer: {
-        id: 3,
-        name: "Mildred Nazir",
-        avatar: "https://i.imgur.com/T2WwVfS.png",
-      }
-    }
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Will",
-      interviewer: {
-        id: 2,
-        name: "Tori Malcolm",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-    interview: {
-      student: "Joe",
-      interviewer: {
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg",
-      }
-    }
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 5,
-    time: "4pm",
-    interview: {
-      student: "Bob",
-      interviewer: {
-        id: 5,
-        name: "Sven Jones",
-        avatar: "https://i.imgur.com/twYrpay.jpg"
-      }
-    }
-  }
-];
+import getAppointmentsForDay from "helpers/selectors"
 
 export default function Application(props) {
-  
-  const [days, setDays] = useState([]);
-  const [day, setDay] = useState([]);
 
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [], 
+    appointments: {}
+  })
+
+  // const state = { day: "Monday", days: []};
+  const setDay = day => setState({...state, day}); //sets day in state
+  const setDays = (days) => setState(prev => ({ ...prev, days})); 
+
+  //set to state bc react only listens to changes to state vars vs reg js vars
+  const [dailyAppointments, setDailyAppointments] = useState([]);
+
+  const getDaysURL = 'http://localhost:8001/api/days'
+  const getAppointmentsURL = 'http://localhost:8001/api/appointments'
+  const getInterviewersURL = 'http://localhost:8001/api/interviewers'
 
   useEffect(() => {
     //get request using axios to update days state
-    axios('http://localhost:8001/api/days')
-      .then((response) => {
-        // console.log("RESPONSE.DATA: ", response.data)
-        setDays([...response.data]);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    Promise.all([
+      axios.get(getDaysURL),
+      axios.get(getAppointmentsURL),
+      axios.get(getInterviewersURL),
+    ]).then((all) => {
+      // console.log(all);
+      setState(prev => ({ ...prev, days:all[0].data, appointments:all[1].data}))
+    }).catch((error) => {
+      console.log(error);
+    })
   }, [])
+
+  useEffect(() => {
+    setDailyAppointments(getAppointmentsForDay(state, state.day));
+    // console.log("DAILY APPOINTMENTS: ", dailyAppointments)
+  },[JSON.stringify(state.appointments), state.day])
 
   return (
     <main className="layout">
@@ -97,8 +56,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            day={day}
+            days={state.days}
+            day={state.day}
             setDay={setDay}
           />
         </nav>
@@ -109,7 +68,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointments.map((appointment) =>
+        {dailyAppointments.map((appointment) =>
             <Appointment 
               key={appointment.id}
               {...appointment}
