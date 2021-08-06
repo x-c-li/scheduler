@@ -30,5 +30,5 @@ export function getInterview(state, interview) {
   const found = state.interviewers[interview.interviewer];
   const finalFound = {...interview, interviewer:found}
 
-  return finalFound
+  return finalFound;
 }
