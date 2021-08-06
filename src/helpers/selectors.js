@@ -1,6 +1,6 @@
 //selector is to help compute new data from existing state in app 
 
-function getAppointmentsForDay(state, day) {
+export function getAppointmentsForDay(state, day) {
 
   const daysArray = state.days
   let dayAppointments = false;
@@ -24,9 +24,11 @@ function getAppointmentsForDay(state, day) {
   return results;
 }
 
-const getInterview = function(state, interview) {
-  const found = state.interviewers.filter(interviewer => interviewer.id === interview);
-  return found;
-}
+export function getInterview(state, interview) {
+  if (interview === null) return null;
 
-export {getAppointmentsForDay, getInterview}
+  const found = state.interviewers[interview.interviewer];
+  const finalFound = {...interview, interviewer:found}
+
+  return finalFound;
+}
