@@ -8,7 +8,7 @@ const useVisualMode = function(initialMode, replace) {
     setHistory((prev) => {
 
       if (replace) {
-        [...prev.pop()]
+        prev.pop();
       }
 
       return [...prev, nextMode]
