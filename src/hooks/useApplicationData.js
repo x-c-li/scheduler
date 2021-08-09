@@ -11,6 +11,44 @@ const useApplicationData = function() {
   })
 
   const setDay = day => setState({...state, day}); //sets day in state
+
+  const showAllSPots = function(days) {
+    for (const day of days) {
+      console.log(day.name, day.spots)
+    }
+  }
+
+  const updateSpots = function (dayName, days, appointments) {
+    
+    const newDays = [...days]
+    
+    //get the day object
+    const index = newDays.findIndex(day => day.name === dayName);
+    const dayObj = newDays[index];
+    
+    let spots = 0;
+    for (const id of dayObj.appointments ) {
+      const appointment = appointments[id];
+      if (!appointment.interview) {
+        spots++;
+      }
+    }
+
+    console.log("SPOTS: ", spots)
+
+    const newDay = {...dayObj, spots: spots};
+    newDays[index] = newDay;
+    //how many spots (appointment.interview = null)
+    
+    //update spots in that dayName  -> need a new day object
+    
+    //put day back in array -> need a new days array 
+
+    //return array
+
+    return newDays;
+  }
+
   
   function bookInterview(id, interview) {
     // console.log(id, interview);
@@ -24,6 +62,11 @@ const useApplicationData = function() {
       ...state.appointments,
       [id]: appointment
     };
+
+    const days = updateSpots(state.day, state.days, appointments)
+
+    setState({...state, appointments, days})
+
     return axios.put(`/api/appointments/${id}`, {interview}) 
     .then((results) => {
       setState({...state, appointments})
@@ -68,6 +111,8 @@ const useApplicationData = function() {
       console.log(error);
     })
   }, [])
+
+
 
  
   return {state, setState, setDay, bookInterview, cancelInterview}
