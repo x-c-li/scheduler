@@ -1,3 +1,11 @@
 import { useState } from "react";
 
-export {useState, setDay, bookInterview, cancelInterview};
+const useApplicationData = function() {
+ return (
+   
+ )
+}
+
+export default useApplicationData;
+
+// export {useState, setDay, bookInterview, cancelInterview};
