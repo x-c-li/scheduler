@@ -6,6 +6,8 @@ import Empty from "components/Appointment/Empty"
 import Form from "components/Appointment/Form"
 import Status from "components/Appointment/Status"
 import Confirm from "components/Appointment/Confirm"
+import Error from "components/Appointment/Error"
+
 import useVisualMode from "hooks/useVisualMode"
 
 
@@ -36,21 +38,21 @@ export default function Appointment(props) {
     .then(() => {
       transition(SHOW);
     })
-    .catch(() => transition(ERROR_SAVE))
+    .catch(() => transition(ERROR_SAVE, true))
   }
 
   function deleting() {
-    transition(DELETE);
+    transition(DELETE, true);
     props.cancelInterview(props.id)
     .then(() => {
       transition(EMPTY);
     })
-    .catch(() => transition(ERROR_DELETE))
+    .catch(() => transition(ERROR_DELETE, true))
   }
 
   function confirm() {
     transition(DELETE);
-    transition(CONFIRM);
+    transition(CONFIRM, true);
   }
 
   function edit() {
@@ -104,6 +106,18 @@ export default function Appointment(props) {
       {mode === DELETE && (
         <Status 
         message={"Deleting"}
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+        message={"Deleting Error"}
+        onClose={() => back()}
+        />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error
+        message={"Saving Error"}
+        onClose={() => back()}
         />
       )}
     </article>
