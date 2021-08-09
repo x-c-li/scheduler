@@ -18,7 +18,6 @@ export default function Application(props) {
   // const setDays = (days) => setState(prev => ({ ...prev, days})); 
 
   function bookInterview(id, interview) {
-    // console.log(id, interview);
     //find id and add interview to the interview obj
     const appointment = {
       ...state.appointments[id],
@@ -53,7 +52,7 @@ export default function Application(props) {
       setState({...state, appointments})
     })
   }
-  
+
   const dailyAppointments = getAppointmentsForDay(state, state.day)
   const interviewerArray = getInterviewersForDay(state, state.day)
 
@@ -84,7 +83,6 @@ export default function Application(props) {
       axios.get(getAppointmentsURL),
       axios.get(getInterviewersURL),
     ]).then((all) => {
-      // console.log(all[2].data);
       setState(prev => ({ 
         ...prev, 
         days:all[0].data, 
