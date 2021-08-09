@@ -12,12 +12,6 @@ const useApplicationData = function() {
 
   const setDay = day => setState({...state, day}); //sets day in state
 
-  const showAllSPots = function(days) {
-    for (const day of days) {
-      console.log(day.name, day.spots)
-    }
-  }
-
   const updateSpots = function (dayName, days, appointments) {
     
     const newDays = [...days]
