@@ -16,6 +16,8 @@ const SAVING = "SAVING";
 const DELETE = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
   
@@ -34,6 +36,7 @@ export default function Appointment(props) {
     .then(() => {
       transition(SHOW);
     })
+    .catch(() => transition(ERROR_SAVE))
   }
 
   function deleting() {
@@ -42,6 +45,7 @@ export default function Appointment(props) {
     .then(() => {
       transition(EMPTY);
     })
+    .catch(() => transition(ERROR_DELETE))
   }
 
   function confirm() {
@@ -50,7 +54,7 @@ export default function Appointment(props) {
   }
 
   function edit() {
-    transition(CREATE)
+    transition(CREATE);
   }
 
   return (
