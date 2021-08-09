@@ -49,6 +49,10 @@ export default function Appointment(props) {
     transition(CONFIRM);
   }
 
+  function edit() {
+    transition(CREATE)
+  }
+
   return (
     <article className="appointment">
       <Header 
@@ -76,7 +80,7 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           onDelete={confirm}
-          // onEdit={}
+          onEdit={edit}
         />
       )}
       {mode === CREATE && (
