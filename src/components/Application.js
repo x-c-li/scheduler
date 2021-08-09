@@ -18,15 +18,44 @@ export default function Application(props) {
   // const setDays = (days) => setState(prev => ({ ...prev, days})); 
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    // console.log(id, interview);
+    //find id and add interview to the interview obj
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview } 
+    };
+    //replace prev existing data w new data
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.put(`/api/appointments/${id}`, {interview}) 
+    .then((results) => {
+      // console.log(results)
+      setState({...state, appointments})
+    })
   }
 
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
-  }
+  // function cancelInterview(id) {
+  //   // console.log(id, interview);
+  //   //find id and add interview to the interview obj
+  //   const appointment = {
+  //     ...state.appointments[id],
+  //     interview: { null } 
+  //   };
+  //   //replace prev existing data w new data
+  //   const appointments = {
+  //     ...state.appointments,
+  //     [id]: appointment
+  //   };
+
+  //   return axios.put(`/api/appointments/${id}`, {appointment.interview}) 
+  //   .then((results) => {
+  //     // console.log(results)
+  //     setState({...state, appointments})
+  //   })
+  // }
 
   const dailyAppointments = getAppointmentsForDay(state, state.day)
   const interviewerArray = getInterviewersForDay(state, state.day)
@@ -42,7 +71,7 @@ export default function Application(props) {
       interview={interview}
       interviewers={interviewerArray}
       bookInterview={bookInterview}
-      save={save}
+      // cancelInterview={cancelInterview}
       />
     )
   })
