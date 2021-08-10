@@ -84,4 +84,7 @@ describe("Form", () => {
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
   });
+
+  xit("calls onSave function when the name is defined", () => {});
+
 });
