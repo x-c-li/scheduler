@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText} from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM} from "@testing-library/react";
 
 import Application from "components/Application";
 import { forceReRender } from "@storybook/react";
@@ -25,7 +25,7 @@ describe("Application", () => {
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     // Render the Application.
     const { container } = render(<Application />);
-    console.log("CONTAINER: ", container);
+    console.log("CONTAINER: ", prettyDOM(container));
     
     // Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText("Monday"));
