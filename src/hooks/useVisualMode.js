@@ -18,7 +18,6 @@ const useVisualMode = function(initialMode, replace) {
   }
 
   const back = function() {
-    console.log("history, ", history)
     if (history.length < 2) {
       return;
     } 
