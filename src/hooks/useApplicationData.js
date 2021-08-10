@@ -76,9 +76,9 @@ const useApplicationData = function() {
     })
   }
 
-  const getDaysURL = 'http://localhost:8001/api/days'
-  const getAppointmentsURL = 'http://localhost:8001/api/appointments'
-  const getInterviewersURL = 'http://localhost:8001/api/interviewers'
+  const getDaysURL = '/api/days'
+  const getAppointmentsURL = '/api/appointments'
+  const getInterviewersURL = '/api/interviewers'
 
   useEffect(() => {
     //get request using axios to update days state
