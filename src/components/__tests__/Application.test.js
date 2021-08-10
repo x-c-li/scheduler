@@ -25,13 +25,12 @@ describe("Application", () => {
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     // Render the Application.
     const { container } = render(<Application />);
-    console.log("CONTAINER: ", prettyDOM(container));
     
     // Wait until the text "Archie Cohen" is displayed.
-    await waitForElement(() => getByText("Monday"));
-    fireEvent.click(getByText("Monday"))
-  
-    ex[ect]
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    // fireEvent.click(getByText("Monday"))
+    console.log("CONTAINER: ", prettyDOM(container));
+
     
     // Click the "Add" button on the first empty appointment.
     // Enter the name "Lydia Miller-Jones" into the input with the placeholder "Enter Student Name".
