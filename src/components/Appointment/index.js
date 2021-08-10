@@ -77,7 +77,7 @@ export default function Appointment(props) {
         interviewer={props.interviewer} 
         // setInterviewer={setInterviewer} 
         onCancel={back}
-        save={save}
+        onSave={save}
       />
       )}
       {mode === SHOW && (
@@ -94,7 +94,7 @@ export default function Appointment(props) {
           interviewer={props.interviewer} 
           // setInterviewer={setInterviewer} 
           onCancel={back}
-          save={save}
+          onSave={save}
         />
       )}
       {mode === SAVING && (
