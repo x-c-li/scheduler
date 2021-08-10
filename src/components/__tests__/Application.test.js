@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM} from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId} from "@testing-library/react";
 
 import Application from "components/Application";
 import { forceReRender } from "@storybook/react";
@@ -31,7 +31,8 @@ describe("Application", () => {
     // fireEvent.click(getByText("Monday"))
     console.log("CONTAINER: ", prettyDOM(container));
 
-    
+    const appointments = getAllByTestId(container, "appointment");
+    console.log(prettyDOM(appointments));
     // Click the "Add" button on the first empty appointment.
     // Enter the name "Lydia Miller-Jones" into the input with the placeholder "Enter Student Name".
     // Click the first interviewer in the list.
