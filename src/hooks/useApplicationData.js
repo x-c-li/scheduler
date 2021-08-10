@@ -32,20 +32,12 @@ const useApplicationData = function() {
 
     const newDay = {...dayObj, spots: spots};
     newDays[index] = newDay;
-    //how many spots (appointment.interview = null)
-    
-    //update spots in that dayName  -> need a new day object
-    
-    //put day back in array -> need a new days array 
-
-    //return array
 
     return newDays;
   }
 
   
   function bookInterview(id, interview) {
-    // console.log(id, interview);
     //find id and add interview to the interview obj
     const appointment = {
       ...state.appointments[id],
@@ -115,5 +107,3 @@ const useApplicationData = function() {
 }
 
 export default useApplicationData;
-
-// export {useState, setDay, bookInterview, cancelInterview};
