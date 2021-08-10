@@ -10,6 +10,8 @@ afterEach(cleanup);
 describe("Application", () => {
 
   it("changes the schedule when a new day is selected", async () => {
+    //left alone bc only needs getByText function within scope of this test
+
     const { getByText } = render(<Application />);
     //asynchronous function has been defined as one using the async keyword.
     // Promise chain can be hidden by using the await keyword
