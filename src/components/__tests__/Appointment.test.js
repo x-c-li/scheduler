@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 describe("Appointment", () => {
   it("renders without crashing", () => {
-    render(<Application />);
+    render(<Appointment />);
   });
 })
 
