@@ -24,6 +24,7 @@ export default function Form(props) {
         >
           <input
             className="appointment__create-input text--semi-bold"
+            name="name"
             value={name}
             // This must be a controlled component
             onChange={(event) => {
@@ -31,6 +32,7 @@ export default function Form(props) {
             }}
             type="text"
             placeholder="Enter Student Name"
+            data-testid="student-name-input"
           />
         </form>
         <InterviewerList 
