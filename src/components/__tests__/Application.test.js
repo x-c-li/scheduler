@@ -17,7 +17,8 @@ afterEach(cleanup);
 
 it("changes the schedule when a new day is selected", async () => {
   const { getByText } = render(<Application />);
-
+  //asynchronous function has been defined as one using the async keyword.
+  // Promise chain can be hidden by using the await keyword
   await waitForElement(() => getByText("Monday"));
 
   fireEvent.click(getByText("Tuesday"));
