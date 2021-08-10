@@ -33,13 +33,9 @@ describe("Application", () => {
 
     const appointments = getAllByTestId(container, "appointment");
     console.log(prettyDOM(appointments));
-    // Click the "Add" button on the first empty appointment.
-    // Enter the name "Lydia Miller-Jones" into the input with the placeholder "Enter Student Name".
-    // Click the first interviewer in the list.
-    // Click the "Save" button on that same appointment.
-    // Check that the element with the text "Saving" is displayed.
-    // Wait until the element with the text "Lydia Miller-Jones" is displayed.
-  
+
+    const appointment = getAllByTestId(container, "appointment")[0];
+    console.log(prettyDOM(appointment));
   
     // Check that the DayListItem with the text "Monday" also has the text "no spots remaining".
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
