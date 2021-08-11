@@ -36,7 +36,6 @@ describe("Application", () => {
 
     const appointment = getAllByTestId(container, "appointment")[0];
     console.log(prettyDOM(appointment));
-    
 
     fireEvent.click(getByAltText(appointment, "Add"));
 
