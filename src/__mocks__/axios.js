@@ -108,7 +108,7 @@ export default {
   }),
 
   delete: jest.fn(url => {
-    if (url === `/api/appointments/${1}`) {
+    if (url === `/api/appointments/${2}`) {
       /* Resolve appointments data */
       return Promise.resolve({
         status: 204, 
