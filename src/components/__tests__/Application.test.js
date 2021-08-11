@@ -11,9 +11,11 @@ import {
   getByPlaceholderText, 
   prettyDOM, 
   queryByText, 
-  queryByAltText} from "@testing-library/react";
+  queryByAltText
+} from "@testing-library/react";
 
 import Application from "components/Application";
+import axios from "axios";
 
 afterEach(cleanup);
 
@@ -123,10 +125,9 @@ describe("Application", () => {
       target: { value: "Lydia Miller-Jones" }
     });
 
-    fireEvent.click(getByText(appointment, "Save"));
+    fireEvent.click(getByAltText(appointment, "Tori Malcolm"))
 
-    // Click the "Confirm" button on the confirmation.
-    fireEvent.click(queryByText(appointment, "Confirm"))
+    fireEvent.click(getByText(appointment, "Save"));
     
     // Check that the element with the text "Saving" is displayed.
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
@@ -139,7 +140,52 @@ describe("Application", () => {
     );
     
     // Check that the DayListItem with the text "Monday" also has the text "1 spot remaining".
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    expect(getByText(day, /no spots remaining/i)).toBeInTheDocument();
     console.log(prettyDOM(day));
   })
+
+  it("shows the save error when failing to save an appointment", () => {
+    axios.put.mockRejectedValueOnce();
+    //use mockRejectedValueOnce() because we want the mock to revert to the default behaviour 
+    //after the single request that this test generates is complete
+
+
+  })
+
+  it("shows the delete error when failing to delete an existing appointment", async () => {
+    // Render the Application.
+    const { container } = render(<Application />);
+
+    // Wait until the text "Archie Cohen" is displayed.
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    // Click the "Delete" button on the booked appointment.
+    const appointment = getAllByTestId(container, "appointment").find(
+      appointment => queryByText(appointment, "Archie Cohen")
+    );
+    
+    // Click the "Delete" button on the appointment
+    fireEvent.click(queryByAltText(appointment, "Delete"));
+
+    // Check that the confirmation message is shown.
+    expect(getByText(appointment, "Are you sure you would like to delete?")).toBeInTheDocument();
+
+    // Click the "Confirm" button on the confirmation.
+    fireEvent.click(queryByText(appointment, "Confirm"))
+
+    // Check that the element with the text "Saving" is displayed.
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
+
+    axios.delete.mockRejectedValueOnce();
+
+    // Check that the error message is shown.
+    expect(getByText(appointment, "Error: Cannot save appointment")).toBeInTheDocument();
+    
+    //Click the "X" button on the error 
+    fireEvent.click(queryByAltText(appointment, "Close"))
+
+    
+
+  })
+
 })
