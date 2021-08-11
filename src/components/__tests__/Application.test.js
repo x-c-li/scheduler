@@ -42,7 +42,8 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
   
     fireEvent.click(getByText(appointment, "Save"));
-    debug(prettyDOM(debug))
+    debug()
+    //updating appointment, if saves, we'll see saving 
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
   })
