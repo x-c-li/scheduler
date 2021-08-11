@@ -12,28 +12,19 @@ const useApplicationData = function() {
 
   const setDay = day => setState({...state, day}); //sets day in state
 
-  const updateSpots = function (dayName, days, appointments) {
+  const updateSpots = function (requestType) {
     
-    const newDays = [...days]
-    
-    //get the day object
-    const index = newDays.findIndex(day => day.name === dayName);
-    const dayObj = newDays[index];
-    
-    let spots = 0;
-    for (const id of dayObj.appointments ) {
-      const appointment = appointments[id];
-      if (!appointment.interview) {
-        spots++;
-      }
+    const dayIndex = state.days.findIndex(day => day.name === state.day)
+    const days = state.days; 
+
+    if (requestType === `create`) {
+      days[dayIndex].spots -= 1 
+    } else {
+      days[dayIndex].spots += 1
     }
 
-    // console.log("SPOTS: ", spots)
+    return days;
 
-    const newDay = {...dayObj, spots: spots};
-    newDays[index] = newDay;
-
-    return newDays;
   }
 
   
@@ -49,13 +40,11 @@ const useApplicationData = function() {
       [id]: appointment
     };
 
-    const days = updateSpots(state.day, state.days, appointments)
-
-    setState({...state, appointments, days})
+    const days = updateSpots('create')
 
     return axios.put(`/api/appointments/${id}`, {interview}) 
     .then((results) => {
-      setState({...state, appointments})
+      setState({...state, appointments, days})
     })
   }
   
@@ -70,9 +59,11 @@ const useApplicationData = function() {
       ...state.appointments,
       [id]: appointment
     };
+    const days = updateSpots()
+
     return axios.delete(`/api/appointments/${id}`) 
     .then((results) => {
-      setState({...state, appointments})
+      setState({...state, appointments, days})
     })
   }
 
