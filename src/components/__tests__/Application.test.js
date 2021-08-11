@@ -1,6 +1,17 @@
 import React from "react";
 
-import {render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, queryByText} from "@testing-library/react";
+import {
+  render, 
+  cleanup, 
+  waitForElement, 
+  fireEvent, 
+  getByText, 
+  getAllByTestId, 
+  getByAltText, 
+  getByPlaceholderText, 
+  prettyDOM, 
+  queryByText, 
+  queryByAltText} from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -73,11 +84,10 @@ describe("Application", () => {
     expect(getByText(appointment, "Are you sure you would like to delete?")).toBeInTheDocument();
 
     // 5. Click the "Confirm" button on the confirmation.
-    fireEvent.click(getByAltText(appointment, "Confirm"))
+    fireEvent.click(getByText(appointment, "Confirm"))
 
     // 6. Check that the element with the text "Deleting" is displayed.
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
-
 
     // 7. Wait until the element with the "Add" button is displayed.
     await waitForElement(() => getByAltText(appointment, "Add"));
