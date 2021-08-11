@@ -28,7 +28,7 @@ const useApplicationData = function() {
       }
     }
 
-    console.log("SPOTS: ", spots)
+    // console.log("SPOTS: ", spots)
 
     const newDay = {...dayObj, spots: spots};
     newDays[index] = newDay;
