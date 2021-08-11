@@ -1,6 +1,6 @@
 import React from "react";
 
-import {render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText} from "@testing-library/react";
+import {render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, queryByText} from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -26,13 +26,13 @@ describe("Application", () => {
     const { container, debug } = render(<Application />);
     
     await waitForElement(() => getByText(container, "Archie Cohen"));
-    debug("CONTAINER: ", prettyDOM(container));
+    // console.log("CONTAINER: ", prettyDOM(container));
 
     const appointments = getAllByTestId(container, "appointment");
-    debug(prettyDOM(appointments));
+    // console.log(prettyDOM(appointments));
 
     const appointment = getAllByTestId(container, "appointment")[0];
-    debug(prettyDOM(appointment));
+    // console.log(prettyDOM(appointment));
 
     fireEvent.click(getByAltText(appointment, "Add"));
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
@@ -45,6 +45,7 @@ describe("Application", () => {
     debug()
     //updating appointment, if saves, we'll see saving 
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
+    await waitForElement(() => queryByText(appointment, "Lydia Miller-Jones"));
 
   })
 
