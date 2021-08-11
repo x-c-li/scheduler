@@ -68,7 +68,7 @@ describe("Application", () => {
 
   it("loads data, cancel an interview and increase the spots remaining for the first day by 1", async () => {
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -84,7 +84,7 @@ describe("Application", () => {
     expect(getByText(appointment, "Are you sure you would like to delete?")).toBeInTheDocument();
 
     // 5. Click the "Confirm" button on the confirmation.
-    fireEvent.click(getByText(appointment, "Confirm"))
+    fireEvent.click(queryByText(appointment, "Confirm"))
 
     // 6. Check that the element with the text "Deleting" is displayed.
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
@@ -96,9 +96,12 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
+    
+    //it has to be one spot bc of the test above, and not 2 spots
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
     console.log(prettyDOM(day));
+
   })
 })
 
