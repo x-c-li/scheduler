@@ -30,14 +30,19 @@ describe("Application", () => {
     const appointments = getAllByTestId(container, "appointment");
     const appointment = appointments[0];
 
+    // Click the "Add" button on the first empty appointment
     fireEvent.click(getByAltText(appointment, "Add"));
     
+    // Enter the name "Lydia Miller-Jones" into the input with the placeholder "Enter Student Name".
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: "Lydia Miller-Jones" }
     });
-  
+    // Click the first interviewer in the list.
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+    // Click the "Save" button on that same appointment.
     fireEvent.click(getByText(appointment, "Save"));
+
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
     //updating appointment, if saves, we'll see saving 
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
@@ -47,7 +52,7 @@ describe("Application", () => {
     );
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-
+    console.log(prettyDOM(day));
   })
 
 })
