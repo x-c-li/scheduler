@@ -103,5 +103,43 @@ describe("Application", () => {
     console.log(prettyDOM(day));
 
   })
-})
 
+  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+    // Render the Application.
+    const { container } = render(<Application />);
+
+    // Wait until the text "Archie Cohen" is displayed.
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    // Click the "Edit" button on the booked appointment.
+    const appointment = getAllByTestId(container, "appointment").find(
+      appointment => queryByText(appointment, "Archie Cohen")
+    );
+    
+    fireEvent.click(queryByAltText(appointment, "Edit"));
+
+    // Change the name and click the SAVE button on the appointment
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+
+    fireEvent.click(getByText(appointment, "Save"));
+
+    // Click the "Confirm" button on the confirmation.
+    fireEvent.click(queryByText(appointment, "Confirm"))
+    
+    // Check that the element with the text "Saving" is displayed.
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    // Wait until the element with the text "Lydia Miller-Jones" is displayed.
+    await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
+
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+    );
+    
+    // Check that the DayListItem with the text "Monday" also has the text "1 spot remaining".
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    console.log(prettyDOM(day));
+  })
+})
