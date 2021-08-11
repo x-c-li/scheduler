@@ -83,35 +83,10 @@ export default {
   }),
 
   put: jest.fn(url => {
-    if (url === `/api/days/${2}`) {
-      return Promise.resolve({
-        status: 204, 
-        statusText: "No Context"
-      })
-    }
-
-    if (url === `/api/days/${1}`) {
-      return Promise.resolve({
-        status: 204, 
-        statusText: "No Context"
-      })
-    }
-
-    if (url === `/api/appointments/${2}`) {
-      /* Resolve appointments data */
-      return Promise.resolve({
-        status: 204, 
-        statusText: "No Context"
-      })
-    }
-
-    if (url === `/api/appointments/${1}`) {
-      /* Resolve appointments data */
-      return Promise.resolve({
-        status: 204, 
-        statusText: "No Context"
-      })
-    }
+    return Promise.resolve({
+      status: 204, 
+      statusText: "No Context"
+    })
   }),
 
   delete: jest.fn(url => {
