@@ -45,8 +45,13 @@ describe("Application", () => {
     debug()
     //updating appointment, if saves, we'll see saving 
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
-    await waitForElement(() => queryByText(appointment, "Lydia Miller-Jones"));
+    // await waitForElement(() => queryByText(appointment, "Lydia Miller-Jones"));
 
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+    );
+    
+    console.log(prettyDOM(day));
   })
 
 })
