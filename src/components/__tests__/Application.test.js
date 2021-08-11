@@ -144,7 +144,28 @@ describe("Application", () => {
     console.log(prettyDOM(day));
   })
 
-  it("shows the save error when failing to save an appointment", () => {
+  it("shows the save error when failing to save an appointment", async () => {
+    const { container} = render(<Application />);
+    
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[0];
+
+    // Click the "Add" button on the first empty appointment
+    fireEvent.click(getByAltText(appointment, "Add"));
+    
+    // Enter the name "Lydia Miller-Jones" into the input with the placeholder "Enter Student Name".
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+    // Click the first interviewer in the list.
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+    // Click the "Save" button on that same appointment.
+    fireEvent.click(getByText(appointment, "Save"));
+
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+    
     axios.put.mockRejectedValueOnce();
     //use mockRejectedValueOnce() because we want the mock to revert to the default behaviour 
     //after the single request that this test generates is complete
@@ -181,10 +202,8 @@ describe("Application", () => {
     // Check that the error message is shown.
     expect(getByText(appointment, "Error: Cannot save appointment")).toBeInTheDocument();
     
-    //Click the "X" button on the error 
+    // //Click the "X" button on the error 
     fireEvent.click(queryByAltText(appointment, "Close"))
-
-    
 
   })
 
