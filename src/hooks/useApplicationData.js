@@ -27,7 +27,6 @@ const useApplicationData = function() {
 
   }
 
-  
   function bookInterview(id, interview) {
     //find id and add interview to the interview obj
     const appointment = {
@@ -88,12 +87,8 @@ const useApplicationData = function() {
       console.log(error);
     })
   }, [])
-
-
-
  
   return {state, setState, setDay, bookInterview, cancelInterview}
-
 
 }
 

@@ -66,7 +66,6 @@ describe("Application", () => {
     );
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-    console.log(prettyDOM(day));
   })
 
   it("loads data, cancel an interview and increase the spots remaining for the first day by 1", async () => {
@@ -103,7 +102,6 @@ describe("Application", () => {
     //it has to be one spot bc of the test above, and not 2 spots
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
-    console.log(prettyDOM(day));
 
   })
 
@@ -142,7 +140,6 @@ describe("Application", () => {
     
     // Check that the DayListItem with the text "Monday" also has the text "1 spot remaining".
     expect(getByText(day, /no spots remaining/i)).toBeInTheDocument();
-    console.log(prettyDOM(day));
   })
 
   it("shows the save error when failing to save an appointment", async () => {

@@ -83,7 +83,6 @@ export default {
   }),
 
   put: jest.fn(url => {
-    console.log("PUT REQUEST", url)
 
     return Promise.resolve({
       status: 204, 
