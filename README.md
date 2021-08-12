@@ -42,4 +42,4 @@ npm run cypress
 ```
 
 ## Final Product 
-![ Alt text](scheduler.gif)
+![ Alt text](https://github.com/x-c-li/scheduler/blob/master/docs/scheduler.gif)
