@@ -5,15 +5,18 @@ describe("Navigation", () => {
       .visit("/")// Visits the root of our web server
       .contains("[data-testid=day]", "Monday")//check dom for text Monday
     
-    cy
+    cy // Clicks on the "Add" button in the second appointment
       .get("[alt=Add")
       .first()
       .click();
+
+    cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones"); // Enters their name
+
+
+
   });
 
-      // Clicks on the "Add" button in the second appointment
-      // Enters their name
-      // Chooses an interviewer
+      
       // Clicks the save button
       // Sees the booked appointment
 
