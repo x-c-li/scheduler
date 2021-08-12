@@ -14,12 +14,12 @@ describe("Navigation", () => {
 
     cy.get("[alt='Sylvia Palmer']").click(); // click on interviewer Sylvia Palmer
 
-    
+    cy.contains("Save").click() // Clicks the save button
 
   });
 
       
-      // Clicks the save button
+      
       // Sees the booked appointment
 
 
