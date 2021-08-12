@@ -1,19 +1,9 @@
 describe("Navigation", () => {
   
-  it("should visit root", () => {
-    cy.visit("/");
+  it("should book an interview", () => {
+    cy.visit("/");// Visits the root of our web server
   });
 
-  it("should navigate to Tuesday", () => {
-    //visit homepage
-    cy.visit("/");
-
-    cy
-      .contains("[data-testid=day]", "Tuesday")
-      .click()//click on it
-      .should("have.class", "day-list__item--selected");//check bckgrnd color
-
-    //should book an interview
       // Visits the root of our web server
       // Clicks on the "Add" button in the second appointment
       // Enters their name
