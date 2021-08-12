@@ -1,6 +1,6 @@
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem.js";
-import "components/InterviewerList.scss";
+import "./InterviewerList.scss";
 import PropTypes from 'prop-types';
 
 InterviewerList.propTypes = {
