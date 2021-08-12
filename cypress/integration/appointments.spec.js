@@ -1,7 +1,7 @@
 describe("Navigation", () => {
 
   beforeEach(()=>{
-    cy.request("GET", "/api/debug/reset")//need bc we're changing state, resets to original state
+    cy.request("GET", "/api/debug/reset");//need bc we're changing state, resets to original state
     cy.visit("/");// Visits the root of our web server
     cy.contains("Monday");//check dom for text Monday
   });
@@ -44,7 +44,8 @@ describe("Navigation", () => {
   it("should cancel an interview", () => {
     
     // Clicks the delete button for the existing appointment
-    cy.get("[alt=Delete]")
+    cy
+    .get("[alt=Delete]")
     .click({ force: true });
     
     // Clicks the confirm button
@@ -54,8 +55,9 @@ describe("Navigation", () => {
     cy.contains("Deleting").should("not.exist");
     
     // Sees that the appointment slot is empty
-    cy.contains(".appointment__card--show", "Archie Cohen")
-      .should("not.exist");
+    cy
+    .contains(".appointment__card--show", "Archie Cohen")
+    .should("not.exist");
 
   })
 
