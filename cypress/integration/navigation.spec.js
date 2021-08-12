@@ -11,7 +11,7 @@ describe("Navigation", () => {
     cy
       .contains("[data-testid=day]", "Tuesday")
       .click()//click on it
-      .should("have.css", "background-color", "rgb(242, 242, 242)");//check bckgrnd color
+      .should("have.class", "day-list__item--selected");//check bckgrnd color
 
 
   });
