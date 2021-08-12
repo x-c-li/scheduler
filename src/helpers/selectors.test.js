@@ -54,6 +54,8 @@ const state = {
   }
 };
 
+//---------------------------------------------TESTS ------------------------------------------------------------------------------------------
+
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");
   expect(Array.isArray(result)).toBe(true);
@@ -99,7 +101,7 @@ test("getInterview returns null if no interview is booked", () => {
   expect(result).toBeNull();
 });
 
-//---GET-INTERVIEWERS-FOR-DAY TESTS ---- 
+//----------------------------------GET-INTERVIEWERS-FOR-DAY TESTS ------------------------------------------------- 
 
 test("getInterviewersForDay returns an array", () => {
   const result = getInterviewersForDay(state, "Monday");
@@ -127,7 +129,7 @@ test("getInterviewersForDay returns an empty array when the day is not found", (
   expect(result.length).toEqual(0);
 });
 
-//---GET INTERVIEW TESTS ---- 
+//--------------------------GET INTERVIEW TESTS ------------------------------------------------- 
 
 
 test("getInterview returns an object with the interviewer data", () => {

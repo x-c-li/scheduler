@@ -61,7 +61,7 @@ export default {
         statusText: "OK",
         data: fixtures.days
       });
-    }
+    };
 
     if (url === "/api/appointments") {
       /* Resolve appointments data */
@@ -69,8 +69,8 @@ export default {
         status: 200,
         statusText: "OK",
         data: fixtures.appointments
-      })
-    }
+      });
+    };
 
     if (url === "/api/interviewers") {
       /* Resolve interviewers data */
@@ -78,16 +78,15 @@ export default {
         status: 200,
         statusText: "OK",
         data: fixtures.interviewers
-      })
-    }
+      });
+    };
   }),
 
   put: jest.fn(url => {
-
     return Promise.resolve({
       status: 204, 
       statusText: "No Context"
-    })
+    });
   }),
 
   delete: jest.fn(url => {
@@ -96,8 +95,8 @@ export default {
       return Promise.resolve({
         status: 204, 
         statusText: "No Context"
-      })
-    }
+      });
+    };
   })
 
 };

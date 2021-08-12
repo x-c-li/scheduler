@@ -1,15 +1,14 @@
 import React from "react";
-// import axios from 'axios';
 import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "./Appointment";
-import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors"
-import useApplicationData from "hooks/useApplicationData"
+import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
+import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
   const {state, setDay, bookInterview, cancelInterview} = useApplicationData();
-  const dailyAppointments = getAppointmentsForDay(state, state.day)
-  const interviewerArray = getInterviewersForDay(state, state.day)
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const interviewerArray = getInterviewersForDay(state, state.day);
   
   
   const schedule = dailyAppointments.map((appointment) => {
@@ -17,7 +16,6 @@ export default function Application(props) {
     return (
       <Appointment 
       key={appointment.id}
-      // {...appointment}
       id={appointment.id}
       time={appointment.time}
       interview={interview}
@@ -25,8 +23,8 @@ export default function Application(props) {
       bookInterview={bookInterview}
       cancelInterview={cancelInterview}
       />
-    )
-  })
+    );
+  });
 
   return (
     <main className="layout">
@@ -56,4 +54,4 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};

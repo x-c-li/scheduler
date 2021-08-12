@@ -8,7 +8,7 @@ const useApplicationData = function() {
     days: [], 
     appointments: {},
     interviewers: {}
-  })
+  });
 
   const setDay = day => setState({...state, day}); //sets day in state
 
@@ -24,8 +24,7 @@ const useApplicationData = function() {
     }
 
     return days;
-
-  }
+  };
 
   function bookInterview(id, interview) {
     //find id and add interview to the interview obj
@@ -39,36 +38,39 @@ const useApplicationData = function() {
       [id]: appointment
     };
 
-    const days = updateSpots('create')
+    const days = updateSpots('create');
 
     return axios.put(`/api/appointments/${id}`, {interview}) 
     .then((results) => {
       setState({...state, appointments, days})
-    })
+    });
   }
   
   function cancelInterview(id) {
+
     //find id and add interview data to the interview obj
     const appointment = {
       ...state.appointments[id],
       interview: null 
     };
+
     //replace prev existing data w new data
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
-    const days = updateSpots()
+
+    const days = updateSpots();
 
     return axios.delete(`/api/appointments/${id}`) 
     .then((results) => {
       setState({...state, appointments, days})
-    })
-  }
+    });
+  };
 
-  const getDaysURL = '/api/days'
-  const getAppointmentsURL = '/api/appointments'
-  const getInterviewersURL = '/api/interviewers'
+  const getDaysURL = '/api/days';
+  const getAppointmentsURL = '/api/appointments';
+  const getInterviewersURL = '/api/interviewers';
 
   useEffect(() => {
     //get request using axios to update days state
@@ -86,9 +88,9 @@ const useApplicationData = function() {
     }).catch((error) => {
       console.log(error);
     })
-  }, [])
+  }, []);
  
-  return {state, setState, setDay, bookInterview, cancelInterview}
+  return {state, setState, setDay, bookInterview, cancelInterview};
 
 }
 

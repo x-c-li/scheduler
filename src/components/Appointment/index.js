@@ -1,5 +1,7 @@
 import React from "react";
+
 import "components/Appointment/styles.scss"
+
 import Header from "components/Appointment/Header"
 import Show from "components/Appointment/Show"
 import Empty from "components/Appointment/Empty"
@@ -10,6 +12,7 @@ import Error from "components/Appointment/Error"
 
 import useVisualMode from "hooks/useVisualMode"
 
+//-------------------STATES---------------------------------------------------------------------------
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -19,6 +22,9 @@ const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
+
+
+//-------------------EXPORTS---------------------------------------------------------------------------
 
 export default function Appointment(props) {
   const { mode, transition, back} = useVisualMode(
@@ -37,7 +43,7 @@ export default function Appointment(props) {
       transition(SHOW);
     })
     .catch(() => transition(ERROR_SAVE, true))
-  }
+  };
 
   function deleting() {
     transition(DELETE, true);
@@ -46,16 +52,16 @@ export default function Appointment(props) {
       transition(EMPTY);
     })
     .catch(() => transition(ERROR_DELETE, true))
-  }
+  };
 
   function confirm() {
     transition(DELETE);
     transition(CONFIRM, true);
-  }
+  };
 
   function edit() {
     transition(EDIT);
-  }
+  };
 
   return (
     <article className="appointment" data-testid="appointment">

@@ -10,7 +10,6 @@ import {
   getByAltText, 
   getByPlaceholderText,
   getByDisplayValue,
-  prettyDOM, 
   queryByText, 
   queryByAltText
 } from "@testing-library/react";
@@ -33,6 +32,7 @@ describe("Application", () => {
     fireEvent.click(getByText("Tuesday"));
   
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
+  
   });
   
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
@@ -51,6 +51,7 @@ describe("Application", () => {
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: "Lydia Miller-Jones" }
     });
+
     // Click the first interviewer in the list.
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
     // Click the "Save" button on that same appointment.
@@ -66,7 +67,8 @@ describe("Application", () => {
     );
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-  })
+  
+  });
 
   it("loads data, cancel an interview and increase the spots remaining for the first day by 1", async () => {
     // 1. Render the Application.
@@ -86,7 +88,7 @@ describe("Application", () => {
     expect(getByText(appointment, "Are you sure you would like to delete?")).toBeInTheDocument();
 
     // 5. Click the "Confirm" button on the confirmation.
-    fireEvent.click(queryByText(appointment, "Confirm"))
+    fireEvent.click(queryByText(appointment, "Confirm"));
 
     // 6. Check that the element with the text "Deleting" is displayed.
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
@@ -102,8 +104,7 @@ describe("Application", () => {
     //it has to be one spot bc of the test above, and not 2 spots
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
-
-  })
+  });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     // Render the Application.
@@ -124,7 +125,7 @@ describe("Application", () => {
       target: { value: "Lydia Miller-Jones" }
     });
 
-    fireEvent.click(getByAltText(appointment, "Tori Malcolm"))
+    fireEvent.click(getByAltText(appointment, "Tori Malcolm"));
 
     fireEvent.click(getByText(appointment, "Save"));
     
@@ -140,7 +141,8 @@ describe("Application", () => {
     
     // Check that the DayListItem with the text "Monday" also has the text "1 spot remaining".
     expect(getByText(day, /no spots remaining/i)).toBeInTheDocument();
-  })
+  
+  });
 
   it("shows the save error when failing to save an appointment", async () => {
     const { container} = render(<Application />);
@@ -149,7 +151,6 @@ describe("Application", () => {
 
     const appointment = getAllByTestId(container, "appointment").find(
       (appointment) => queryByText(appointment, "Archie Cohen"));
-    // const appointment = appointments[0];
 
     // Click the "Add" button on the first empty appointment
     fireEvent.click(queryByAltText(appointment, "Edit"));
@@ -181,7 +182,7 @@ describe("Application", () => {
 
     expect(getByDisplayValue(appointment, "Archie Cohen")).toBeInTheDocument();
 
-  })
+  });
 
   it("shows the delete error when failing to delete an existing appointment", async () => {
     // Render the Application.
@@ -203,7 +204,7 @@ describe("Application", () => {
     axios.delete.mockRejectedValueOnce();
 
     // Click the "Confirm" button on the confirmation.
-    fireEvent.click(queryByText(appointment, "Confirm"))
+    fireEvent.click(queryByText(appointment, "Confirm"));
 
     // Check that the element with the text "Saving" is displayed.
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
@@ -219,6 +220,6 @@ describe("Application", () => {
     await waitForElement(() => getByText(container, "Archie Cohen"));
     expect(getByText(appointment, "Archie Cohen")).toBeInTheDocument();
 
-  })
+  });
 
-})
+});

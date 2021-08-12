@@ -18,7 +18,7 @@ export default function DayListItem(props) {
       <h3 className='text--light'>{formatSpots(props.spots)}</h3>
     </li>
   );
-}
+};
 
 export function formatSpots(spots) {
   if (spots === 0) {
@@ -28,4 +28,4 @@ export function formatSpots(spots) {
     return `${spots} spot remaining`;
   } 
   return `${spots} spots remaining`;
-}
+};

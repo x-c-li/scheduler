@@ -9,26 +9,27 @@ const useVisualMode = function(initialMode, replace) {
 
       if (replace) {
         prev.pop();
-      }
+      };
 
       return [...prev, nextMode]
 
     });
 
-  }
+  };
 
   const back = function() {
     if (history.length < 2) {
       return;
-    } 
+    };
 
     setHistory(prev => {
       return prev.slice(0, prev.length - 1);
-    })
-  }
+    });
+
+  };
 
   const mode = history[history.length - 1];
-  return {mode, transition, back }
+  return {mode, transition, back };
 
 }
 

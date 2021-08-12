@@ -10,6 +10,7 @@ InterviewerList.propTypes = {
 export default function InterviewerList(props) { 
 
   const interviewPerson = props.interviewers.map((interviewer) => {
+    
     return (
     
       <InterviewerListItem
@@ -21,7 +22,7 @@ export default function InterviewerList(props) {
         selected={interviewer.id === props.interviewer}
       />
     
-    )
+    );
   });
 
   return (
@@ -31,4 +32,4 @@ export default function InterviewerList(props) {
     </section>
   );
 
-}
+};
