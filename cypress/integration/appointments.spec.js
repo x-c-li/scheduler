@@ -42,12 +42,21 @@ describe("Navigation", () => {
   });      
       
   it("should cancel an interview", () => {
-
-    // Visits the root of our web server
-    // Clicks the delete button for the existing appointment
-    // Clicks the confirm button
-    // Sees that the appointment slot is empty
     
+    // Clicks the delete button for the existing appointment
+    cy.get("[alt=Delete]")
+    .click({ force: true });
+    
+    // Clicks the confirm button
+    cy.contains("Confirm").click();
+    
+    cy.contains("Deleting").should("exist");
+    cy.contains("Deleting").should("not.exist");
+    
+    // Sees that the appointment slot is empty
+    cy.contains(".appointment__card--show", "Archie Cohen")
+      .should("not.exist");
+
   })
 
 });
