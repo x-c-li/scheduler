@@ -1,12 +1,12 @@
 describe("Navigation", () => {
+
+  beforeEach(()=>{
+    cy.request("GET", "/api/debug/reset")//need bc we're changing state, resets to original state
+    cy.visit("/");// Visits the root of our web server
+    cy.contains("Monday");//check dom for text Monday
+  })
   
   it("should book an interview", () => {
-    
-    cy.request("GET", "/api/debug/reset")//need bc we're changing state, resets to original state
-    
-    cy
-    .visit("/")// Visits the root of our web server
-    .contains("[data-testid=day]", "Monday")//check dom for text Monday
     
     cy // Clicks on the "Add" button in the second appointment
     .get("[alt=Add]")
@@ -14,7 +14,6 @@ describe("Navigation", () => {
     .click();
 
     cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones"); // Enters their name
-
     cy.get("[alt='Sylvia Palmer']").click(); // click on interviewer Sylvia Palmer
 
     cy.contains("Save").click() // Clicks the save button
