@@ -4,7 +4,7 @@ describe("Navigation", () => {
     cy.request("GET", "/api/debug/reset")//need bc we're changing state, resets to original state
     cy.visit("/");// Visits the root of our web server
     cy.contains("Monday");//check dom for text Monday
-  })
+  });
   
   it("should book an interview", () => {
     
@@ -23,13 +23,14 @@ describe("Navigation", () => {
 
   });
 
-    //should edit an interview (edit for Archie Cohen)
+  if("should edit an interview (for Archie Cohen)", () => {
       // Visits the root of our web server
       // Clicks the edit button for the existing appointment
       // Changes the name and interviewer
       // Clicks the save button
       // Sees the edit to the appointment
 
+  });      
       
     //should cancel an interview
       // Visits the root of our web server
