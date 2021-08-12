@@ -1,12 +1,15 @@
 describe("Navigation", () => {
   
   it("should book an interview", () => {
+    
+    cy.request("GET", "/api/debug/reset")//need bc we're changing state, resets to original state
+    
     cy
     .visit("/")// Visits the root of our web server
     .contains("[data-testid=day]", "Monday")//check dom for text Monday
     
     cy // Clicks on the "Add" button in the second appointment
-    .get("[alt=Add")
+    .get("[alt=Add]")
     .first() //the second one is for the 5pm one
     .click();
 
@@ -16,12 +19,10 @@ describe("Navigation", () => {
 
     cy.contains("Save").click() // Clicks the save button
 
+    cy.contains(".appointment__card--show", "Sylvia Palmer") //verify student names
+    cy.contains(".appointment__card--show", "Lydia Miller-Jones") //verify student names
+
   });
-
-      
-      
-      // Sees the booked appointment
-
 
     //should edit an interview (edit for Archie Cohen)
       // Visits the root of our web server
