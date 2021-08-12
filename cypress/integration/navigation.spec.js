@@ -9,7 +9,7 @@ describe("Navigation", () => {
     cy.visit("/");
 
     cy
-      .contains("li", "Tuesday")
+      .contains("[data-testid=day]", "Tuesday")
       .click()//click on it
       .should("have.css", "background-color", "rgb(242, 242, 242)");//check bckgrnd color
 
