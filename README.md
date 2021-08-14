@@ -43,6 +43,15 @@ npm run storybook
 
 ## Running Cypress Test Framework
 
+Cypress is set to run with test data in this project. 
+
+Make sure to type the following into scheduler-api:
+
+```sh
+NODE_ENV=test npm start
+```
+Make sure to type the following into scheduler:
+
 ```sh
 npm run cypress
 ```
