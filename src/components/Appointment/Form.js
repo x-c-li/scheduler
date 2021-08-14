@@ -19,7 +19,6 @@ export default function Form(props) {
   };
 
   function validate(name, interviewer) {
-    console.log("FORM IN VALIDATE", name, interviewer)
     if (name === "") {
       setError("student name cannot be blank");
       return;
