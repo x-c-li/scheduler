@@ -7,9 +7,8 @@ describe("Navigation", () => {
   });
   
   it("should book an interview", () => {
-    
-    cy // Clicks on the "Add" button in the second appointment
-    .get("[alt=Add]")
+    // Clicks on the "Add" button in the second appointment
+    cy.get("[alt=Add]")
     .first() //the second one is for the 5pm one
     .click();
 
@@ -25,8 +24,7 @@ describe("Navigation", () => {
 
   it("should edit an interview", () => {
 
-    cy
-    .get("[alt=Edit]")
+    cy.get("[alt=Edit]")
     .first()
     .click({force: true}); // Clicks the edit button for the existing appointment
     
@@ -42,10 +40,9 @@ describe("Navigation", () => {
   });      
       
   it("should cancel an interview", () => {
-    
     // Clicks the delete button for the existing appointment
-    cy
-    .get("[alt=Delete]")
+    cy.get("[alt=Delete]")
+    .first()
     .click({ force: true });
     
     // Clicks the confirm button
