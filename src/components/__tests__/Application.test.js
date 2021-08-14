@@ -140,7 +140,7 @@ describe("Application", () => {
     );
     
     // Check that the DayListItem with the text "Monday" also has the text "1 spot remaining".
-    expect(getByText(day, /no spots remaining/i)).toBeInTheDocument();
+    expect(getByText(day,"1 spot remaining")).toBeInTheDocument();
   
   });
 
