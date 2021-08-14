@@ -23,6 +23,9 @@ We combine a concise API with a WebSocket server to build a realtime experience.
 
 Install dependencies with `npm install`.
 
+Make sure to also clone this project and follow the set up instructions there. This will be your database. 
+https://github.com/x-c-li/scheduler-api
+
 ## Running Webpack Development Server
 
 ```sh
