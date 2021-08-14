@@ -9,7 +9,7 @@ const useApplicationData = function() {
     appointments: {},
     interviewers: {}
   });
-
+  // console.log("state", state)
   const setDay = day => setState({...state, day}); //sets day in state
 
   const updateSpots = function (requestType) {
@@ -27,18 +27,23 @@ const useApplicationData = function() {
   };
 
   function bookInterview(id, interview) {
-    //find id and add interview to the interview obj
+    
+    let days = state.days;
+
     const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview } 
+      ...state.appointments[id]
     };
+    if (!appointment.interview) {
+      days = updateSpots('create');
+    }
+    
+    appointment.interview = {...interview}
+
     //replace prev existing data w new data
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
-
-    const days = updateSpots('create');
 
     return axios.put(`/api/appointments/${id}`, {interview}) 
     .then((results) => {
