@@ -9,7 +9,6 @@ const useApplicationData = function() {
     appointments: {},
     interviewers: {}
   });
-  // console.log("state", state)
   const setDay = day => setState({...state, day}); //sets day in state
 
   const updateSpots = function (requestType) {
@@ -29,12 +28,12 @@ const useApplicationData = function() {
   function bookInterview(id, interview) {
     
     let days = state.days;
-
+    let requireUpdate = false;
     const appointment = {
       ...state.appointments[id]
     };
     if (!appointment.interview) {
-      days = updateSpots('create');
+      requireUpdate = true;
     }
     
     appointment.interview = {...interview}
@@ -47,11 +46,16 @@ const useApplicationData = function() {
 
     return axios.put(`/api/appointments/${id}`, {interview}) 
     .then((results) => {
+      if (requireUpdate) {
+        days = updateSpots('create');
+      }
       setState({...state, appointments, days})
     });
   }
   
   function cancelInterview(id) {
+    let days = state.days;
+    let requireUpdate = false;
 
     //find id and add interview data to the interview obj
     const appointment = {
@@ -65,10 +69,10 @@ const useApplicationData = function() {
       [id]: appointment
     };
 
-    const days = updateSpots();
 
     return axios.delete(`/api/appointments/${id}`) 
     .then((results) => {
+      days = updateSpots();
       setState({...state, appointments, days})
     });
   };
